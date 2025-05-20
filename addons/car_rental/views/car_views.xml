@@ -13,7 +13,7 @@
                 </group>
             </form>
         </field>
-    </record> <!-- ← This closing tag was missing -->
+    </record> <!-- ✅ You forgot this closing tag -->
 
     <!-- Car List View -->
     <record id="view_car_list" model="ir.ui.view">
