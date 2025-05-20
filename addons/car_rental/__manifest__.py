@@ -1,16 +1,17 @@
 {
     'name': 'Car Rental',
     'version': '1.0',
-    'summary': 'Manage Car Rental operations',
-    'category': 'Rental',
-    'author': 'Your Name',
-    'depends': ['base'],
+    'category': 'Services',
+    'summary': 'Manage car rentals including customers and bookings',
+    'depends': ['base', 'website'],
     'data': [
-        'views/menu.xml',
+        'security/ir.model.access.csv',
         'views/car_views.xml',
         'views/customer_views.xml',
         'views/rental_views.xml',
+        'views/menu.xml',
+        'views/website_templates.xml',
     ],
-    'installable': True,
     'application': True,
+    'installable': True,
 }

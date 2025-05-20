@@ -1,0 +1,23 @@
+<odoo>
+  <template id="car_listing" name="Car Listing Page">
+    <t t-call="website.layout">
+      <div class="container mt-4">
+        <h2>Available Cars</h2>
+        <div class="row">
+          <t t-foreach="cars" t-as="car">
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><t t-esc="car.name"/></h5>
+                  <p>License Plate: <t t-esc="car.license_plate"/></p>
+                  <p>Color: <t t-esc="car.color"/></p>
+                  <p>Status: <t t-esc="car.is_available and 'Available' or 'Not Available'"/></p>
+                </div>
+              </div>
+            </div>
+          </t>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>
