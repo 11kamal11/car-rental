@@ -1,4 +1,5 @@
 <odoo>
+    <!-- Customer Form View -->
     <record id="view_customer_form" model="ir.ui.view">
         <field name="name">customer.form</field>
         <field name="model">car.rental.customer</field>
@@ -12,21 +13,27 @@
             </form>
         </field>
     </record>
-    <record id="view_customer_tree" model="ir.ui.view">
-        <field name="name">customer.tree</field>
+
+    <!-- Customer List View -->
+    <record id="view_customer_list" model="ir.ui.view">
+        <field name="name">customer.list</field>
         <field name="model">car.rental.customer</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
-            </tree>
+            </list>
         </field>
     </record>
+
+    <!-- Action -->
     <record id="action_customer" model="ir.actions.act_window">
         <field name="name">Customers</field>
         <field name="res_model">car.rental.customer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
+
+    <!-- Menu -->
     <menuitem id="menu_customer" name="Customers" parent="menu_root" action="action_customer"/>
 </odoo>
