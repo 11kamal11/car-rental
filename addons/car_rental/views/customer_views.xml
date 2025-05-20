@@ -5,11 +5,13 @@
         <field name="model">car.rental.customer</field>
         <field name="arch" type="xml">
             <form string="Customer">
-                <group>
-                    <field name="name"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -27,7 +29,7 @@
         </field>
     </record>
 
-    <!-- Action -->
+    <!-- Customer Action -->
     <record id="action_customer" model="ir.actions.act_window">
         <field name="name">Customers</field>
         <field name="res_model">car.rental.customer</field>
