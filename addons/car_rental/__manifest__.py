@@ -1,18 +1,16 @@
-
 {
-    'name': 'Car Rental Management',
+    'name': 'Car Rental',
     'version': '1.0',
-    'depends': ['base'],
+    'summary': 'Manage Car Rental operations',
+    'category': 'Rental',
     'author': 'Your Name',
-    'category': 'Management',
-    'description': 'A full car rental management module for Odoo 18.',
-    'application': True,
+    'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
         'views/menu.xml',
         'views/car_views.xml',
         'views/customer_views.xml',
         'views/rental_views.xml',
     ],
+    'installable': True,
+    'application': True,
 }
-
