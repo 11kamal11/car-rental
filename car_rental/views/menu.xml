@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="menu_root" name="Car Rental" sequence="1"/>
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_rental_form" model="ir.ui.view">
+        <field name="name">rental.form</field>
+        <field name="model">car.rental.rental</field>
+        <field name="arch" type="xml">
+            <form string="Rental">
+                <group>
+                    <field name="car_id"/>
+                    <field name="customer_id"/>
+                    <field name="rent_date"/>
+                    <field name="return_date"/>
+                    <field name="state"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_rental_tree" model="ir.ui.view">
+        <field name="name">rental.tree</field>
+        <field name="model">car.rental.rental</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="car_id"/>
+                <field name="customer_id"/>
+                <field name="rent_date"/>
+                <field name="return_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_rental" model="ir.actions.act_window">
+        <field name="name">Rentals</field>
+        <field name="res_model">car.rental.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_rental" name="Rentals" parent="menu_root" action="action_rental"/>
+</odoo>
