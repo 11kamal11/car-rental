@@ -1,16 +1,19 @@
-from odoo import models, fields, api
+from odoo import models, fields
 
-class Car(models.Model):
+class CarRentalCar(models.Model):
     _name = 'car.rental.car'
-    _description = 'Car'
+    _description = 'Car Rental'
 
-    name = fields.Char(required=True)
-    license_plate = fields.Char(required=True, unique=True)
-    color = fields.Char()
-    is_available = fields.Boolean(default=True)
+    name = fields.Char(string='Car Name', required=True)
+    model = fields.Char(string='Model')
+    price_per_day = fields.Float(string='Price per Day')
+    is_available = fields.Boolean(string='Is Available', default=True)
+    image_1920 = fields.Image(string='Image')
+    category_id = fields.Many2one('car.rental.category', string='Category')
+    description = fields.Text(string='Description')
 
-    @api.constrains('license_plate')
-    def _check_unique_license(self):
-        for record in self:
-            if self.search_count([('license_plate', '=', record.license_plate), ('id', '!=', record.id)]) > 0:
-                raise ValidationError("License plate must be unique.")
+class CarRentalCategory(models.Model):
+    _name = 'car.rental.category'
+    _description = 'Car Rental Category'
+
+    name = fields.Char(string='Category Name', required=True)
