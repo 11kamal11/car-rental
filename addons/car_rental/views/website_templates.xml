@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="car_listing" name="Cars Available for Rent">
-        <!-- Existing template for /cars -->
         <t t-call="website.layout">
             <div class="container mt-4">
-                <h1 class="text-center">Car Listing</h1>
-                <!-- Existing content -->
-            </div>
-        </t>
-    </template>
-
-    <template id="available_for_rent" name="Available for Rent">
-        <t t-call="website.layout">
-            <div class="container mt-4">
-                <h1 class="text-center">Rent Your Dream Car</h1>
-                <p class="text-center">Explore our available cars below.</p>
+                <h1 class="text-center mb-4">Available Cars for Rent</h1>
+                <!-- Category Filter -->
+                <form method="get" action="/available-for-rent" class="mb-4">
+                    <div class="form-group">
+                        <label for="category">Filter by Category</label>
+                        <select name="category" id="category" class="form-control" style="max-width: 300px;" onchange="this.form.submit()">
+                            <option value="">All Categories</option>
+                            <t t-foreach="categories" t-as="cat">
+                                <option t-att-value="cat.name" t-att-selected="cat.name == category"><t t-esc="cat.name"/></option>
+                            </t>
+                        </select>
+                    </div>
+                </form>
+                <!-- Car Listing -->
+                <t t-if="not cars">
+                    <p class="text-center">No cars available at the moment.</p>
+                </t>
                 <div class="row">
                     <t t-foreach="cars" t-as="car">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <div class="card">
+                                <img t-att-src="car.image_1920 or '/car_rental/static/src/img/default_car.jpg'" class="card-img-top" alt="Car Image" style="height: 200px; object-fit: cover;"/>
                                 <div class="card-body">
                                     <h5 class="card-title"><t t-esc="car.name"/></h5>
                                     <p class="card-text">
-                                        Price: $<t t-esc="car.price_per_day or 0.0"/><br/>
-                                        <t t-esc="car.description or 'No description available'"/>
+                                        Model: <t t-esc="car.model or 'N/A'"/><br/>
+                                        Price per Day: $<t t-esc="car.price_per_day or 0.0"/><br/>
+                                        Category: <t t-esc="car.category_id.name or 'N/A'"/>
                                     </p>
-                                    <a t-att-href="'/book-car/%s' % car.id" class="btn btn-success">Reserve Now</a>
+                                    <a t-att-href="'/book-car/%s' % car.id" class="btn btn-primary">Book Now</a>
                                 </div>
                             </div>
                         </div>
