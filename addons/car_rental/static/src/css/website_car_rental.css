@@ -8,7 +8,10 @@
     height: 200px;
     object-fit: cover;
 }
-.btn-primary, .btn-success {
+.btn-primary {
     background-color: #007bff;
     border-color: #007bff;
+}
+.form-control {
+    max-width: 300px;
 }
