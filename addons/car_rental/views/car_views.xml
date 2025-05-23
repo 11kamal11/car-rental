@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <!-- Car Form View -->
     <record id="view_car_form" model="ir.ui.view">
@@ -5,27 +6,37 @@
         <field name="model">car.rental.car</field>
         <field name="arch" type="xml">
             <form string="Car">
-                <group>
-                    <field name="name"/>
-                    <field name="license_plate"/>
-                    <field name="color"/>
-                    <field name="is_available"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="license_plate"/>
+                        <field name="color"/>
+                        <field name="is_available"/>
+                        <field name="model"/>
+                        <field name="price_per_day"/>
+                        <field name="image_1920" widget="image"/>
+                        <field name="category_id"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
             </form>
         </field>
-    </record> <!-- ✅ You forgot this closing tag -->
+    </record>
 
     <!-- Car List View -->
     <record id="view_car_list" model="ir.ui.view">
         <field name="name">car.list</field>
         <field name="model">car.rental.car</field>
         <field name="arch" type="xml">
-            <list>
+            <tree>
                 <field name="name"/>
                 <field name="license_plate"/>
                 <field name="color"/>
                 <field name="is_available"/>
-            </list>
+                <field name="model"/>
+                <field name="price_per_day"/>
+                <field name="category_id"/>
+            </tree>
         </field>
     </record>
 
@@ -33,7 +44,7 @@
     <record id="action_car" model="ir.actions.act_window">
         <field name="name">Cars</field>
         <field name="res_model">car.rental.car</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu -->
