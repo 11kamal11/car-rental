@@ -11,7 +11,8 @@ class CarRentalCar(models.Model):
     image_1920 = fields.Image(string='Image')
     category_id = fields.Many2one('car.rental.category', string='Category')
     description = fields.Text(string='Description')
-    license_plate = fields.Char(string='License Plate')  # Added field
+    license_plate = fields.Char(string='License Plate')  # Added
+    color = fields.Char(string='Color')  # Added
 
 class CarRentalCategory(models.Model):
     _name = 'car.rental.category'
