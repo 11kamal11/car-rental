@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_car,access.car,model_car_rental_car,,1,1,1,1
-access_customer,access.customer,model_car_rental_customer,,1,1,1,1
-access_rental,access.rental,model_car_rental_rental,,1,1,1,1
+access_car_rental_car,access.car.rental.car,model_car_rental_car,,1,1,1,1
+access_car_rental_category,access.car.rental.category,model_car_rental_category,,1,1,1,1
+access_car_rental_booking,access.car.rental.booking,model_car_rental_booking,,1,1,1,1
