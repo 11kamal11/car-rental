@@ -8,19 +8,25 @@ class CarRentalWebsite(http.Controller):
         return http.request.render('car_rental.car_listing', {'cars': cars})
 
     @http.route('/available-for-rent', type='http', auth='public', website=True)
-    def available_for_rent(self, category=None, search=None, **kw):
+    def available_for_rent(self, category=None, search=None, sort=None, **kw):
         domain = [('is_available', '=', True)]
         if category:
             domain.append(('category_id.name', '=', category))
         if search:
             domain.append('|', ('name', 'ilike', search), ('model', 'ilike', search))
-        cars = http.request.env['car.rental.car'].search(domain)
+        order = 'name'
+        if sort == 'price_asc':
+            order = 'price_per_day asc'
+        elif sort == 'price_desc':
+            order = 'price_per_day desc'
+        cars = http.request.env['car.rental.car'].search(domain, order=order)
         categories = http.request.env['car.rental.category'].search([])
         return http.request.render('car_rental.car_listing', {
             'cars': cars,
             'categories': categories,
             'category': category,
-            'search': search
+            'search': search,
+            'sort': sort
         })
 
     @http.route('/book-car/<int:car_id>', type='http', auth='public', website=True)
@@ -41,3 +47,4 @@ class CarRentalWebsite(http.Controller):
             'rental_date': rental_date,
         })
         return http.request.redirect('/available-for-rent?booking=success')
+        
