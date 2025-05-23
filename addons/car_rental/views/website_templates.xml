@@ -4,8 +4,13 @@
         <t t-call="website.layout">
             <div class="container mt-4">
                 <h1 class="text-center mb-4">Available Cars for Rent</h1>
-                <!-- Category Filter -->
+                <!-- Search Bar -->
                 <form method="get" action="/available-for-rent" class="mb-4">
+                    <div class="form-group">
+                        <label for="search">Search Cars</label>
+                        <input type="text" class="form-control" id="search" name="search" t-att-value="search or ''" placeholder="Search by name or model"/>
+                    </div>
+                    <!-- Category Filter -->
                     <div class="form-group">
                         <label for="category">Filter by Category</label>
                         <select name="category" id="category" class="form-control" style="max-width: 300px;" onchange="this.form.submit()">
@@ -15,6 +20,7 @@
                             </t>
                         </select>
                     </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
                 <!-- Car Listing -->
                 <t t-if="not cars">
@@ -29,6 +35,8 @@
                                     <h5 class="card-title"><t t-esc="car.name"/></h5>
                                     <p class="card-text">
                                         Model: <t t-esc="car.model or 'N/A'"/><br/>
+                                        License Plate: <t t-esc="car.license_plate or 'N/A'"/><br/>
+                                        Color: <t t-esc="car.color or 'N/A'"/><br/>
                                         Price per Day: $<t t-esc="car.price_per_day or 0.0"/><br/>
                                         Category: <t t-esc="car.category_id.name or 'N/A'"/>
                                     </p>
@@ -38,6 +46,26 @@
                         </div>
                     </t>
                 </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="car_booking_form" name="Book a Car">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1 class="text-center">Book <t t-esc="car.name"/></h1>
+                <form action="/submit-booking" method="post">
+                    <input type="hidden" name="car_id" t-att-value="car.id"/>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="rental_date">Rental Date</label>
+                        <input type="date" class="form-control" id="rental_date" name="rental_date" required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Booking</button>
+                </form>
             </div>
         </t>
     </template>
