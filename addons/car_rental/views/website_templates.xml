@@ -1,23 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <template id="car_listing" name="Car Listing Page">
-    <t t-call="website.layout">
-      <div class="container mt-4">
-        <h2>Available Cars</h2>
-        <div class="row">
-          <t t-foreach="cars" t-as="car">
-            <div class="col-md-4">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h5 class="card-title"><t t-esc="car.name"/></h5>
-                  <p>License Plate: <t t-esc="car.license_plate"/></p>
-                  <p>Color: <t t-esc="car.color"/></p>
-                  <p>Status: <t t-esc="car.is_available and 'Available' or 'Not Available'"/></p>
-                </div>
-              </div>
+    <template id="car_listing" name="Cars Available for Rent">
+        <!-- Existing template for /cars -->
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1 class="text-center">Car Listing</h1>
+                <!-- Existing content -->
             </div>
-          </t>
-        </div>
-      </div>
-    </t>
-  </template>
+        </t>
+    </template>
+
+    <template id="available_for_rent" name="Available for Rent">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1 class="text-center">Rent Your Dream Car</h1>
+                <p class="text-center">Explore our available cars below.</p>
+                <div class="row">
+                    <t t-foreach="cars" t-as="car">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><t t-esc="car.name"/></h5>
+                                    <p class="card-text">
+                                        Price: $<t t-esc="car.price_per_day or 0.0"/><br/>
+                                        <t t-esc="car.description or 'No description available'"/>
+                                    </p>
+                                    <a t-att-href="'/book-car/%s' % car.id" class="btn btn-success">Reserve Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
 </odoo>
