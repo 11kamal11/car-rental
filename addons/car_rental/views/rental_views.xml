@@ -1,19 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_rental_form" model="ir.ui.view">
         <field name="name">rental.form</field>
-        <field name="model">car.rental.rental</field>
+        <field name="model">car.rental.booking</field>
         <field name="arch" type="xml">
-            <form string="Rental">
+            <form string="Booking">
                 <sheet>
                     <group>
                         <field name="car_id"/>
-                        <field name="customer_id"/>
-                        <field name="rent_date"/>
-                        <field name="return_date"/>
-                        <field name="duration_days" readonly="1"/>
-                        <field name="daily_rate"/>
-                        <field name="total_price" readonly="1"/>
-                        <field name="state"/>
+                        <field name="name"/>
+                        <field name="rental_date"/>
                     </group>
                 </sheet>
             </form>
@@ -22,25 +18,21 @@
 
     <record id="view_rental_list" model="ir.ui.view">
         <field name="name">rental.list</field>
-        <field name="model">car.rental.rental</field>
+        <field name="model">car.rental.booking</field>
         <field name="arch" type="xml">
-            <list>
+            <tree>
                 <field name="car_id"/>
-                <field name="customer_id"/>
-                <field name="rent_date"/>
-                <field name="return_date"/>
-                <field name="duration_days"/>
-                <field name="total_price"/>
-                <field name="state"/>
-            </list>
+                <field name="name"/>
+                <field name="rental_date"/>
+            </tree>
         </field>
     </record>
 
     <record id="action_rental" model="ir.actions.act_window">
-        <field name="name">Rentals</field>
-        <field name="res_model">car.rental.rental</field>
-        <field name="view_mode">list,form</field>
+        <field name="name">Bookings</field>
+        <field name="res_model">car.rental.booking</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_rental" name="Rentals" parent="menu_root" action="action_rental"/>
+    <menuitem id="menu_rental" name="Bookings" parent="menu_root" action="action_rental"/>
 </odoo>
