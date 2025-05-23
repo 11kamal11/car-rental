@@ -19,6 +19,8 @@
         'web.assets_frontend': [
             'car_rental/static/src/css/website_car_rental.css',
         ],
+        },
     'application': True,
     'installable': True,
+    'license': 'LGPL-3',
 }
